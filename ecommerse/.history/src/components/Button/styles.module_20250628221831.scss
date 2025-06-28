@@ -1,0 +1,6 @@
+@use '@styles/mixin.modules.scss' as *;
+@use '@styles/variable.module.scss' as *;
+
+.btn {
+  @include btn(176px, 42px, 3px, $primary_color)
+}

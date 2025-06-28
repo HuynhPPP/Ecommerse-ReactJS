@@ -1,0 +1,13 @@
+@use '@styles/mixin.modules.scss' as *;
+@use '@styles/variable.module.scss' as *;
+
+.container {
+    background-image: url(../../assets/images/banner-ecommerse.jpeg);
+    min-height: 750px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.content {
+
+}

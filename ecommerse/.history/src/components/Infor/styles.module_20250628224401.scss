@@ -1,0 +1,13 @@
+@use '@styles/mixin.modules.scss' as *;
+@use '@styles/variable.module.scss' as *;
+
+.container {
+    height: 144px;
+    background-color: $primary_color;
+}
+
+
+.menu:hover::after {
+    opacity: 1;
+    transform: scale(1);
+}
