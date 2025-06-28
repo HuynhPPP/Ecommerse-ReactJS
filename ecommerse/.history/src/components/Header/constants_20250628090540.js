@@ -1,0 +1,3 @@
+const dataBoxIcon = {
+    {type: 'fb'}
+}
