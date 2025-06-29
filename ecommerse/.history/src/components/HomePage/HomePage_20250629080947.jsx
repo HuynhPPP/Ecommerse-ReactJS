@@ -3,19 +3,19 @@ import MyHeader from '@components/Header/Header';
 import styles from './styles.module.scss';
 import AdvancelHeadling from '@components/AdvancelHeadling/AdvancelHeadling';
 import Infor from '@components/Infor/Infor';
-import HeadingListProduct from '@components/HeadingListProduct/HeadingListProduct';
 
 function HomePage() {
   const { container } = styles;
   return (
     <>
+      <div>
         <div className={container}>
           <MyHeader />
           <Banner />
           <Infor />
           <AdvancelHeadling />
-          <HeadingListProduct />
         </div>
+      </div>
     </>
   );
 }

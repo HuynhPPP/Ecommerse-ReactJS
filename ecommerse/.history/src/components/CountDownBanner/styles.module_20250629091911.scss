@@ -1,0 +1,9 @@
+@use '@styles/mixin.modules.scss' as *;
+@use '@styles/variable.module.scss' as *;
+
+.container {
+    background-image: url(../../assets/images/count-down-banner.jpeg);
+    height: 409px;
+    width: 100%;
+    background-repeat: no-repeat;
+}
