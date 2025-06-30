@@ -1,0 +1,29 @@
+@use '@styles/mixin.modules.scss' as *;
+@use '@styles/variable.module.scss' as *;
+
+.boxImg {
+  width: 300px;
+  height: 353px;
+  position: relative;
+  cursor: pointer;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &:hover .showImgWhenHover {
+    opacity: 1;
+    transition: opacity 500ms;
+  }
+
+  .showImgWhenHover {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
