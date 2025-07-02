@@ -7,7 +7,6 @@ function Button({ content, isPrimary = true }) {
     <button
       className={classNames(btn, {
         [primaryBtn]: isPrimary,
-        [secondaryBtn]: !isPrimary,
       })}
     >
       {content}
