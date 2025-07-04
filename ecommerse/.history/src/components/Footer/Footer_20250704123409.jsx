@@ -1,7 +1,7 @@
 import { dataMenu } from '@components/Footer/constant';
 import styles from './styles.module.scss';
 import Logo from '@icons/images/marseille-logo-footer.png';
-import LogoPayment from '@icons/images/payment-method-img.png';
+import Logo from '@icons/images/marseille-logo-footer.png';
 
 function MyFooter() {
   const { container, boxNav } = styles;
@@ -15,18 +15,6 @@ function MyFooter() {
         {dataMenu.map((item) => (
           <div>{item.content}</div>
         ))}
-      </div>
-
-      <div>
-        <p style={{ textAlign: 'center' }}>Guaranteed safe ckeckout</p>
-        <img src={LogoPayment} alt='' />
-      </div>
-
-      <div style={{
-        textAlign: 'center',
-        marginTop: '20px',
-      }}>
-        Copyright © 2025 XStore theme. Created by Huynh Phan.
       </div>
     </div>
   );

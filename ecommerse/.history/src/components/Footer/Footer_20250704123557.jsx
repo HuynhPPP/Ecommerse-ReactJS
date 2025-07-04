@@ -22,11 +22,9 @@ function MyFooter() {
         <img src={LogoPayment} alt='' />
       </div>
 
-      <div style={{
-        textAlign: 'center',
-        marginTop: '20px',
-      }}>
-        Copyright © 2025 XStore theme. Created by Huynh Phan.
+      <div>
+        Copyright © 2024 XStore theme. Created by 8theme – WordPress WooCommerce
+        themes.
       </div>
     </div>
   );

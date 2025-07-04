@@ -23,9 +23,9 @@ const useTranslateX = () => {
 
   const handleTranslateX = () => {
     if (scrollDirection === 'down' && scrollPosition >= 1500) {
-      setTranslateXPosition((prev) => (prev <= 0 ? 0 : prev - 0.4));
+      setTranslateXPosition((prev) => (prev <= 0 ? 0 : prev - 0.3));
     } else if (scrollDirection === 'up') {
-      setTranslateXPosition((prev) => (prev >= 80 ? 80 : prev + 0.4));
+      setTranslateXPosition((prev) => (prev >= 80 ? 80 : prev + 0.3));
     }
   };
 

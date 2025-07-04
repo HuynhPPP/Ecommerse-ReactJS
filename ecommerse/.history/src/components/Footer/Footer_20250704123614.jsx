@@ -22,10 +22,7 @@ function MyFooter() {
         <img src={LogoPayment} alt='' />
       </div>
 
-      <div style={{
-        textAlign: 'center',
-        marginTop: '20px',
-      }}>
+      <div>
         Copyright © 2025 XStore theme. Created by Huynh Phan.
       </div>
     </div>

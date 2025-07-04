@@ -1,0 +1,8 @@
+@use '@styles/mixin.modules.scss' as *;
+@use '@styles/variable.module.scss' as *;
+
+.container {
+  background-color: $thr_color;
+  margin-top: 100px;
+  color: $white_color;
+}

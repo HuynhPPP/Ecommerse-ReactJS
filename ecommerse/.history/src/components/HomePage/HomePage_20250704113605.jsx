@@ -32,6 +32,11 @@ function HomePage() {
         <PopularProduct data={listProducts.slice(2, listProducts.length)} />
         <SaleHomePage />
         <MyFooter />
+        <div
+          style={{
+            height: '200px',
+          }}
+        ></div>
       </div>
     </>
   );
