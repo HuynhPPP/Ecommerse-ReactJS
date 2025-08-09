@@ -1,0 +1,16 @@
+@use '@styles/mixin.modules.scss' as *;
+@use '@styles/variable.module.scss' as *;
+
+.container {
+  .labelInput {
+    font-size: 14px;
+    color: $four_color;
+  }
+
+  .boxInput {
+    width: 100%;
+    input {
+      width: 100%;
+    }
+  }
+}
