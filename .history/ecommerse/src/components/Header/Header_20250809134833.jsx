@@ -1,7 +1,10 @@
 import BoxIcon from './BoxIcon/BoxIcon';
 import Logo from '@icons/images/Logo-retina.png';
+import heartIcon from '@icons/svgs/heart.svg';
 import { BsHeart } from "react-icons/bs";
+import reLoadIcon from '@icons/svgs/reloadIcon.svg';
 import { TfiReload } from 'react-icons/tfi';
+import cartIcon from '@icons/svgs/cartIcon.svg';
 import { PiShoppingCart } from "react-icons/pi";
 import { dataBoxIcon, dataMenu } from './constants';
 import Menu from './Menu/Menu';
@@ -21,15 +24,11 @@ function MyHeader() {
     fixedHeader,
     topHeader,
   } = styles;
-
   const { scrollPosition } = useScrollHandling();
   const [fixedPosition, setFixedPosition] = useState(false);
-  const { setIsOpen, setType } = useContext(SideBarContext);
+  const { isOpen, setIsOpen } = useContext(SideBarContext);
 
-  const handleOpenSidebar = (type) => {
-    setIsOpen(true);
-    setType(type);
-  }
+  const
 
   useEffect(() => {
     setFixedPosition(scrollPosition > 80);
@@ -81,19 +80,16 @@ function MyHeader() {
               style={{
                 fontSize: '20px',
               }}
-              onClick={() => handleOpenSidebar('compare')}
             />
             <BsHeart
               style={{
                 fontSize: '20px',
               }}
-              onClick={() => handleOpenSidebar('wishlist')}
             />
             <PiShoppingCart
               style={{
                 fontSize: '20px',
               }}
-              onClick={() => handleOpenSidebar('cart')}
             />
           </div>
         </div>

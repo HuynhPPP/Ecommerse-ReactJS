@@ -9,7 +9,7 @@ export const SideBarProvider = ({ children }) => {
   const value = { isOpen, setIsOpen, type, setType };
 
   return (
-    <SideBarContext.Provider value={value}>
+    <SideBarContext.Provider value={{ isOpen, setIsOpen }}>
       {children}
     </SideBarContext.Provider>
   );

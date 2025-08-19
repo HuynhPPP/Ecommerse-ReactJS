@@ -28,7 +28,6 @@ function MyHeader() {
 
   const handleOpenSidebar = (type) => {
     setIsOpen(true);
-    setType(type);
   }
 
   useEffect(() => {
@@ -81,19 +80,16 @@ function MyHeader() {
               style={{
                 fontSize: '20px',
               }}
-              onClick={() => handleOpenSidebar('compare')}
             />
             <BsHeart
               style={{
                 fontSize: '20px',
               }}
-              onClick={() => handleOpenSidebar('wishlist')}
             />
             <PiShoppingCart
               style={{
                 fontSize: '20px',
               }}
-              onClick={() => handleOpenSidebar('cart')}
             />
           </div>
         </div>

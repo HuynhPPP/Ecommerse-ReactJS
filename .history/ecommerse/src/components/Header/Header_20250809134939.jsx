@@ -24,11 +24,10 @@ function MyHeader() {
 
   const { scrollPosition } = useScrollHandling();
   const [fixedPosition, setFixedPosition] = useState(false);
-  const { setIsOpen, setType } = useContext(SideBarContext);
+  const { setIsOpen } = useContext(SideBarContext);
 
-  const handleOpenSidebar = (type) => {
+  const handleOpenSidebar = () => {
     setIsOpen(true);
-    setType(type);
   }
 
   useEffect(() => {
@@ -81,19 +80,16 @@ function MyHeader() {
               style={{
                 fontSize: '20px',
               }}
-              onClick={() => handleOpenSidebar('compare')}
             />
             <BsHeart
               style={{
                 fontSize: '20px',
               }}
-              onClick={() => handleOpenSidebar('wishlist')}
             />
             <PiShoppingCart
               style={{
                 fontSize: '20px',
               }}
-              onClick={() => handleOpenSidebar('cart')}
             />
           </div>
         </div>

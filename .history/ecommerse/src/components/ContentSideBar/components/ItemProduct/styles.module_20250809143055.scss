@@ -1,0 +1,12 @@
+@use '@styles/mixin.modules.scss' as *;
+@use '@styles/variable.module.scss' as *;
+
+.container {
+  @include flex_box_custom(center, flex-start, 25px);
+
+  margin-top: 30px;
+
+  img { 
+    width: 70px;
+  }
+}

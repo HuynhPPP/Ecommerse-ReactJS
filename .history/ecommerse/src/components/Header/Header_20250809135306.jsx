@@ -81,19 +81,17 @@ function MyHeader() {
               style={{
                 fontSize: '20px',
               }}
-              onClick={() => handleOpenSidebar('compare')}
+              onClick={() => {}}
             />
             <BsHeart
               style={{
                 fontSize: '20px',
               }}
-              onClick={() => handleOpenSidebar('wishlist')}
             />
             <PiShoppingCart
               style={{
                 fontSize: '20px',
               }}
-              onClick={() => handleOpenSidebar('cart')}
             />
           </div>
         </div>

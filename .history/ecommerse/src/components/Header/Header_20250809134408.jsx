@@ -1,8 +1,11 @@
 import BoxIcon from './BoxIcon/BoxIcon';
 import Logo from '@icons/images/Logo-retina.png';
-import { BsHeart } from "react-icons/bs";
+import heartIcon from '@icons/svgs/heart.svg';
+import { CiHeart } from 'react-icons/ci';
+import reLoadIcon from '@icons/svgs/reloadIcon.svg';
 import { TfiReload } from 'react-icons/tfi';
-import { PiShoppingCart } from "react-icons/pi";
+import cartIcon from '@icons/svgs/cartIcon.svg';
+import { PiShoppingCartThin } from 'react-icons/pi';
 import { dataBoxIcon, dataMenu } from './constants';
 import Menu from './Menu/Menu';
 import styles from './styles.module.scss';
@@ -21,15 +24,10 @@ function MyHeader() {
     fixedHeader,
     topHeader,
   } = styles;
-
   const { scrollPosition } = useScrollHandling();
   const [fixedPosition, setFixedPosition] = useState(false);
-  const { setIsOpen, setType } = useContext(SideBarContext);
 
-  const handleOpenSidebar = (type) => {
-    setIsOpen(true);
-    setType(type);
-  }
+  const { isOpen, setIsOpen } = useContext(SideBarContext);
 
   useEffect(() => {
     setFixedPosition(scrollPosition > 80);
@@ -81,19 +79,16 @@ function MyHeader() {
               style={{
                 fontSize: '20px',
               }}
-              onClick={() => handleOpenSidebar('compare')}
             />
-            <BsHeart
+            <CiHeart
               style={{
                 fontSize: '20px',
               }}
-              onClick={() => handleOpenSidebar('wishlist')}
             />
-            <PiShoppingCart
+            <PiShoppingCartThin
               style={{
                 fontSize: '20px',
               }}
-              onClick={() => handleOpenSidebar('cart')}
             />
           </div>
         </div>

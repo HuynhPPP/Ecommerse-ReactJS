@@ -93,7 +93,7 @@ function MyHeader() {
               style={{
                 fontSize: '20px',
               }}
-              onClick={() => handleOpenSidebar('cart')}
+              onClick={() => handleOpenSidebar('compare')}
             />
           </div>
         </div>

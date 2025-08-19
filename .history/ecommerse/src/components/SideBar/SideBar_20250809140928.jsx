@@ -4,7 +4,7 @@ import { SideBarContext } from '@/contexts/SideBarProvider';
 import classNames from 'classnames';
 import { TfiClose } from 'react-icons/tfi';
 import Login from '@components/ContentSideBar/Login/Login';
-import Compare from '@components/ContentSideBar/Compare/Compare';
+import Compare from '@components/Compare/Compare';
 
 function SideBar() {
   const { container, overplay, sidebar, slideSideBar, boxIcon } = styles;

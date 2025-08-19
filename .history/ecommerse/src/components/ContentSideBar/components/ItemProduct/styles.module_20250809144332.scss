@@ -1,0 +1,45 @@
+@use '@styles/mixin.modules.scss' as *;
+@use '@styles/variable.module.scss' as *;
+
+.container {
+  @include flex_box_custom(center, flex-start, 25px);
+
+  margin-top: 20px;
+  padding: 20px;
+  transition: 0.3s all ease;
+  position: relative;
+  overflow: hidden;
+
+  img { 
+    width: 70px;
+  }
+
+  .boxClose {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+    transform: translateX(30px);
+    transition: 0.3s all ease;
+  }
+
+  .boxContent {
+    @include flex_box_custom(center, flex-start, 15px);
+    flex-direction: column;
+
+    .title {
+      font-size: 16px;
+      color: $primary-color;
+      cursor: pointer;
+    }
+
+    .price {
+      font-size: 14px;
+      color: $four_color;
+    }
+  }
+
+  &:hover {
+    background-color: #f7f7f7;
+  }
+}

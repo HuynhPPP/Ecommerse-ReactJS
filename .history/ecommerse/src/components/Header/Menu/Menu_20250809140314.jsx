@@ -1,8 +1,8 @@
 import { useContext } from 'react';
 import styles from '../styles.module.scss';
-import { SideBarContext } from '@/contexts/SideBarProvider';
+import { SideBarContext } from 'src/contexts/SideBarProvider';
 
-function Menu({ content, href }) {
+function Menu({ content, href, setIsOpen }) {
   const { menu } = styles;
   const { setIsOpen, setType } = useContext(SideBarContext);
 
@@ -14,7 +14,7 @@ function Menu({ content, href }) {
   };
 
   return (
-    <div className={menu} onClick={handleClickShowLogin}>
+    <div className={menu} onClick={() => setIsOpen(true)}>
       {content}
     </div>
   );

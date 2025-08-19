@@ -4,7 +4,6 @@ import { SideBarContext } from '@/contexts/SideBarProvider';
 import classNames from 'classnames';
 import { TfiClose } from 'react-icons/tfi';
 import Login from '@components/ContentSideBar/Login/Login';
-import Compare from '@components/ContentSideBar/Compare/Compare';
 
 function SideBar() {
   const { container, overplay, sidebar, slideSideBar, boxIcon } = styles;
@@ -18,7 +17,7 @@ function SideBar() {
       case 'login':
         return <Login />;
       case 'compare':
-        return <Compare />
+        return 'compare';
       case 'wishlist':
         return 'wishlist';
       case 'cart':
@@ -47,7 +46,7 @@ function SideBar() {
             <TfiClose />
           </div>
         )}
-        {handleRenderContent()}
+        handleRenderContent()
       </div>
     </div>
   );

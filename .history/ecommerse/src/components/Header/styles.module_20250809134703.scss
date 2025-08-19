@@ -34,8 +34,8 @@
 .containerBoxIcon {
   @include flex_box_custom(center, center, 20px);
 
-  &:hover {
-    cursor: pointer;
+  &::hover {
+    
   }
 }
 
