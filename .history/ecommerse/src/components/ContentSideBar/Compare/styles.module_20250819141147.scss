@@ -1,0 +1,18 @@
+@use '@styles/mixin.modules.scss' as *;
+@use '@styles/variable.module.scss' as *;
+
+.container {
+  @include flex_box_custom(spase-between, center, 8px);
+
+  flex-direction: column;
+  padding: 30px 20px;
+  height: 100vh;
+
+  .boxContent {
+
+  }
+}
+
+button {
+  width: 100% !important;
+}
