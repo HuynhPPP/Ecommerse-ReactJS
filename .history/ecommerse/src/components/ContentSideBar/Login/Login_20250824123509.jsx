@@ -70,9 +70,9 @@ function Login() {
     const fetchUser = async () => {
       try {
         const res = await getInfo();
-        console.log('User Info:', res.data);
+        console.log('✅ User Info:', res.data); // In ra thông tin user
       } catch (err) {
-        console.error('Lỗi khi lấy thông tin:', err);
+        console.error('❌ Lỗi khi lấy thông tin:', err);
       }
     };
 
