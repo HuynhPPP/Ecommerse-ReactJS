@@ -19,7 +19,7 @@ function HomePage() {
     });
   }, []);
 
-  console.log(listProducts, 'listProducts');
+  // console.log(listProducts, 'listProducts');
 
   return (
     <>
