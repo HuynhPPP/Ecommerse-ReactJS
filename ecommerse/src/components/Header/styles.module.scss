@@ -15,7 +15,7 @@
 .fixedHeader {
   position: fixed;
   top: -83px;
-  background-color: #FFFFFFE6;
+  background-color: #ffffffe6;
   box-shadow: 2px 0px 12px 0px rgba(0, 0, 0, 0.15);
   backdrop-filter: blur(5px);
   z-index: 999;
@@ -64,7 +64,7 @@
 
   .subMenu {
     position: absolute;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     width: 100%;
     padding: 10px;
     top: 40px;
@@ -87,4 +87,21 @@
 .menu:hover::after {
   opacity: 1;
   transform: scale(1);
+}
+
+.boxCart {
+  position: relative;
+
+  .quantity {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: $primary_color;
+    color: #ffffff;
+    width: 15px;
+    height: 15px;
+    font-size: 10px;
+    @include radius_common(50%);
+    @include flex_box_custom(center, center, 0px);
+  }
 }

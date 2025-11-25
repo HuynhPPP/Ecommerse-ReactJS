@@ -3,6 +3,11 @@ import MainLayout from '@components/Layout/Layout';
 import styles from './styles.module.scss';
 import { useNavigate } from 'react-router-dom';
 import Banner from '@pages/OurShop/components/banner';
+import { OurShopProvider } from '@contexts/OurShopProvider';
+import { useContext } from 'react';
+import Fillter from '@pages/OurShop/components/Fillter';
+import ListProducts from '@pages/OurShop/components/ListProducts';
+import MyFooter from '@components/Footer/Footer';
 
 function OurShop() {
   const { container, functionBox, specialText, btnBack } = styles;
@@ -13,7 +18,7 @@ function OurShop() {
   };
 
   return (
-    <>
+    <OurShopProvider>
       <MyHeader />
       <MainLayout>
         <div className={container}>
@@ -28,8 +33,13 @@ function OurShop() {
         </div>
 
         <Banner />
+        <div>
+          <Fillter />
+          <ListProducts />
+        </div>
       </MainLayout>
-    </>
+      <MyFooter />
+    </OurShopProvider>
   );
 }
 
