@@ -5,10 +5,12 @@ import ItemProduct from '@components/ContentSideBar/components/ItemProduct/ItemP
 import Button from '@components/Button/Button';
 import { useContext } from 'react';
 import { SideBarContext } from '@/contexts/SideBarProvider';
+import LoadingTextCommon from '@components/LoadingTextCommon/LoadingTextCommon';
 
 function Cart() {
-  const { container, total, boxBtn } = styles;
-  const { listProductCart } = useContext(SideBarContext);
+  const { container, total, boxBtn, containerListProductCart, overlayLoading } =
+    styles;
+  const { listProductCart, isLoadingProductCart } = useContext(SideBarContext);
 
   return (
     <div className={container}>
@@ -18,20 +20,26 @@ function Cart() {
           title='CART'
         />
 
-        {listProductCart.map((item, index) => {
-          return (
-            <ItemProduct
-              key={index}
-              item={item}
-              src={item.images[0]}
-              nameProduct={item.name}
-              sizeProduct={item.size}
-              priceProduct={item.price}
-              sku={item.sku}
-              quantity={item.quantity}
-            />
-          );
-        })}
+        {isLoadingProductCart ? (
+          <LoadingTextCommon />
+        ) : (
+          listProductCart.map((item, index) => {
+            return (
+              <ItemProduct
+                key={index}
+                item={item}
+                src={item.images[0]}
+                nameProduct={item.name}
+                sizeProduct={item.size}
+                priceProduct={item.price}
+                sku={item.sku}
+                quantity={item.quantity}
+                productId={item.productId}
+                userId={item.userId}
+              />
+            );
+          })
+        )}
       </div>
 
       <div>

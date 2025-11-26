@@ -30,28 +30,42 @@ axiosClient.interceptors.response.use(
   async (err) => {
     const originalRequest = err.config;
 
-    if (err.response.status === 401 && !originalRequest._retry) {
+    if (err.response?.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
 
       const refreshToken = Cookies.get('refreshToken');
 
-      if (!refreshToken) return Promise.reject(err);
+      if (!refreshToken) {
+        // Clear all auth data if no refresh token
+        Cookies.remove('token');
+        Cookies.remove('refreshToken');
+        Cookies.remove('userId');
+        return Promise.reject(err);
+      }
 
       try {
         const res = await axiosClient.post('/refresh-token', {
           token: refreshToken,
         });
         const newAccessToken = res.data.accessToken;
+
+        // Save the new token to cookies
+        Cookies.set('token', newAccessToken);
+
+        // Update the original request with the new token
         originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
         return axiosClient(originalRequest);
-        
       } catch (error) {
+        // Clear all auth data on refresh failure
         Cookies.remove('token');
         Cookies.remove('refreshToken');
-
-        return Promise.reject(err);
+        Cookies.remove('userId');
+        return Promise.reject(error);
       }
     }
+
+    // Return rejected promise for all other errors
+    return Promise.reject(err);
   }
 );
 
