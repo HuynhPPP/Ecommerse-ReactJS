@@ -10,6 +10,7 @@ import useScrollHandling from '@/hooks/useScrollHandling';
 import { useContext, useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { SideBarContext } from '@/contexts/SideBarProvider';
+import { useNavigate } from 'react-router-dom';
 
 function MyHeader() {
   const {
@@ -27,6 +28,7 @@ function MyHeader() {
   const { scrollPosition } = useScrollHandling();
   const [fixedPosition, setFixedPosition] = useState(false);
   const { setIsOpen, setType, listProductCart } = useContext(SideBarContext);
+  const navigate = useNavigate();
 
   const handleOpenSidebar = (type) => {
     setIsOpen(true);
@@ -63,7 +65,9 @@ function MyHeader() {
             style={{
               width: '153px',
               height: '53px',
+              cursor: 'pointer',
             }}
+            onClick={() => navigate('/')}
           />
         </div>
         <div className={containerBox}>
