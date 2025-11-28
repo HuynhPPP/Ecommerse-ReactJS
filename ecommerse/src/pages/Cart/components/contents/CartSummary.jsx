@@ -9,6 +9,9 @@ import paypalImg from '@/assets/images/Payment/paypal.jpeg';
 import americanExpressImg from '@/assets/images/Payment/american-express.jpeg';
 import maestroImg from '@/assets/images/Payment/maestro.jpeg';
 import bitcoinImg from '@/assets/images/Payment/bitcoin.jpeg';
+import { useContext } from 'react';
+import { SideBarContext } from '@/contexts/SideBarProvider';
+import LoadingCart from '@/pages/Cart/components/LoadingCart';
 
 function CartSummary() {
   const {
@@ -27,6 +30,8 @@ function CartSummary() {
     textSecure,
   } = styles;
 
+  const { listProductCart, isLoadingProductCart } = useContext(SideBarContext);
+
   // Payment methods data
   const paymentMethodsList = [
     { id: 1, name: 'Visa', image: visaImg },
@@ -37,6 +42,10 @@ function CartSummary() {
     { id: 6, name: 'Bitcoin', image: bitcoinImg },
   ];
 
+  const total = listProductCart.reduce((acc, item) => {
+    return acc + item.total;
+  }, 0);
+
   return (
     <>
       <div className={containerRight}>
@@ -45,17 +54,18 @@ function CartSummary() {
 
           <div className={cls(boxTotal, subTotal)}>
             <div>SUBTOTAL</div>
-            <div className={price}>$2.093.40</div>
+            <div className={price}>${total}</div>
           </div>
 
           <div className={cls(boxTotal, totals)}>
             <div>TOTAL</div>
-            <div>$2.093.40</div>
+            <div>${total}</div>
           </div>
 
           <Button content={'PROCEED TO CHECKOUT'} />
           <div className={space}></div>
           <Button content={'CONTINUE SHOPPING'} isPrimary={false} />
+          {isLoadingProductCart && <LoadingCart />}
         </div>
 
         <div className={containerMethod}>

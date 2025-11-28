@@ -27,6 +27,7 @@ export const SideBarProvider = ({ children }) => {
   };
 
   const value = {
+    userId,
     isOpen,
     setIsOpen,
     type,
@@ -34,6 +35,7 @@ export const SideBarProvider = ({ children }) => {
     listProductCart,
     isLoadingProductCart,
     handleGetListProductsCart,
+    setIsLoadingProductCart,
   };
 
   useEffect(() => {

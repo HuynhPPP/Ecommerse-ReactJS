@@ -1,40 +1,33 @@
 import React from 'react';
 import styles from '../../styles.module.scss';
-import saleImage from '@/assets/images/Image_sale1.jpeg';
+import { IoTrashOutline } from 'react-icons/io5';
+import SelectBox from '@/pages/OurShop/components/SelectBox';
+import LoadingCart from '@/pages/Cart/components/LoadingCart';
 
-const CartTable = () => {
+const CartTable = ({ listProductCart, getData, isLoading, getDataDelete }) => {
   const { cartTable } = styles;
 
-  // Static sample data
-  const staticCartItems = [
-    {
-      id: 1,
-      name: 'Classic T-Shirt',
-      images: [saleImage],
-      size: 'M',
-      price: 29.99,
-      sku: 'TS-001',
-      quantity: 2,
-    },
-    {
-      id: 2,
-      name: 'Denim Jeans',
-      images: [saleImage],
-      size: 'L',
-      price: 59.99,
-      sku: 'DJ-002',
-      quantity: 1,
-    },
-    {
-      id: 3,
-      name: 'Sneakers',
-      images: [saleImage],
-      size: '42',
-      price: 89.99,
-      sku: 'SN-003',
-      quantity: 1,
-    },
+  const showOptions = [
+    { label: '1', value: '1' },
+    { label: '2', value: '2' },
+    { label: '3', value: '3' },
+    { label: '4', value: '4' },
+    { label: '5', value: '5' },
+    { label: '6', value: '6' },
+    { label: '7', value: '7' },
   ];
+
+  const getValueSelect = (userId, productId, quantity, size) => {
+    const data = {
+      userId,
+      productId,
+      quantity,
+      size,
+      isMultiple: true,
+    };
+
+    getData(data);
+  };
 
   return (
     <div className={cartTable}>
@@ -50,7 +43,7 @@ const CartTable = () => {
           </tr>
         </thead>
         <tbody>
-          {staticCartItems.map((item) => (
+          {listProductCart.map((item) => (
             <tr key={item.id}>
               <td className={styles.product}>
                 <img src={item.images[0]} alt={item.name} />
@@ -60,26 +53,35 @@ const CartTable = () => {
                 </div>
               </td>
               <td>
-                <div>&#128465;</div>
+                <div
+                  onClick={() =>
+                    getDataDelete({
+                      userId: item.userId,
+                      productId: item.productId,
+                    })
+                  }
+                >
+                  <IoTrashOutline style={{ cursor: 'pointer' }} />
+                </div>
               </td>
               <td>${item.price.toFixed(2)}</td>
               <td>{item.sku}</td>
               <td>
-                <select>
-                  <option value='1'>1</option>
-                  <option value='2' selected={item.quantity === 2}>
-                    2
-                  </option>
-                  <option value='3'>3</option>
-                  <option value='4'>4</option>
-                  <option value='5'>5</option>
-                </select>
+                <SelectBox
+                  options={showOptions}
+                  getValues={(e) => {
+                    getValueSelect(item.userId, item.productId, e, item.size);
+                  }}
+                  type='show'
+                  defaultValue={item.quantity}
+                />
               </td>
               <td>${(item.price * item.quantity).toFixed(2)}</td>
             </tr>
           ))}
         </tbody>
       </table>
+      {isLoading && <LoadingCart />}
     </div>
   );
 };
