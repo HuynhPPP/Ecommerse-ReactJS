@@ -33,13 +33,25 @@
 
     .size {
       padding: 9px 12px;
-      border: 1px solid $sub_color;
+      border: 1px solid #e1e1e1;
       font-size: 12px;
       cursor: pointer;
+
+      &:hover {
+        border: 1px solid $primary_color;
+      }
     }
 
     .isActive {
       border: 1px solid $primary_color;
+    }
+
+    .btnClear {
+      font-size: 13px;
+      color: $four_color;
+      cursor: pointer;
+      padding-top: 12px;
+      text-decoration: underline;
     }
   }
 
@@ -54,7 +66,8 @@
     }
 
     button {
-      width: 190px;
+      font-size: 12px;
+      width: 250px;
     }
   }
 
@@ -76,6 +89,14 @@
     }
   }
 
+  .btnSelectOptions {
+    @include btn(100%, 37px, 3px, $primary_color);
+    font-size: 12px;
+    font-weight: 300;
+    cursor: pointer;
+    color: $white_color;
+  }
+
   .boxAddOther {
     @include flex_box_custom(flex-start, center, 10px);
 
@@ -92,6 +113,7 @@
     }
 
     .boxLinkFooter {
+      padding: 10px 10px;
     }
   }
 }

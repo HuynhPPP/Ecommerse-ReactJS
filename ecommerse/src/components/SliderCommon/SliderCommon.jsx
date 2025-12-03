@@ -16,8 +16,6 @@ function SliderCommon({ data }) {
     nextArrow: <SlArrowRight />,
     prevArrow: <SlArrowLeft />,
   };
-
-  console.log(data);
   return (
     <Slider {...settings}>
       {data.map((src, index) => {
