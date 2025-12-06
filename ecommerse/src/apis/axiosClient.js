@@ -30,6 +30,24 @@ axiosClient.interceptors.response.use(
   async (err) => {
     const originalRequest = err.config;
 
+    // Handle timeout errors
+    if (err.code === 'ECONNABORTED') {
+      return Promise.reject({
+        ...err,
+        message: 'Request timeout. Please check your connection and try again.',
+        isTimeout: true,
+      });
+    }
+
+    // Handle network errors (no response from server)
+    if (!err.response) {
+      return Promise.reject({
+        ...err,
+        message: 'Network error. Please check your internet connection.',
+        isNetworkError: true,
+      });
+    }
+
     if (err.response?.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
 

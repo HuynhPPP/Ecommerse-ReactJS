@@ -9,6 +9,8 @@ import { TfiReload } from 'react-icons/tfi';
 import { PiShoppingCart } from 'react-icons/pi';
 import Button from '@components/Button/Button';
 import PaymentMethod from '@components/PaymentMethod/PaymentMethod';
+import AccordionMenu from '@components/AccordionMenu';
+import { useState } from 'react';
 
 function ProductDetail() {
   const {
@@ -37,6 +39,25 @@ function ProductDetail() {
 
   const handleBackPrePage = () => {
     navigate(-1);
+  };
+
+  const [menuSelected, setMenuSelected] = useState(1);
+
+  const dataAccordionMenu = [
+    {
+      id: 1,
+      titleMenu: 'ADDITIONAL INFORMATION',
+      contentAccordion: <div>CONTENT ADDITIONAL INFORMATION</div>,
+    },
+    {
+      id: 2,
+      titleMenu: 'REVIEW (0)',
+      contentAccordion: <div>CONTENT REVIEW</div>,
+    },
+  ];
+
+  const handleSetMenuSelected = (id) => {
+    setMenuSelected(id);
   };
 
   return (
@@ -133,6 +154,16 @@ function ProductDetail() {
                   Category: <span>Men</span>
                 </div>
               </div>
+
+              {dataAccordionMenu.map((item, index) => (
+                <AccordionMenu
+                  key={index}
+                  titleMenu={item.titleMenu}
+                  contentAccordion={item.contentAccordion}
+                  onClick={() => handleSetMenuSelected(item.id)}
+                  isSelected={menuSelected === item.id}
+                />
+              ))}
             </div>
           </div>
         </MainLayout>

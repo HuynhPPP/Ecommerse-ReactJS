@@ -1,9 +1,18 @@
-import { Children, createContext, useEffect, useState } from 'react';
+import {
+  Children,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 import { getProducts } from '@/apis/productsService';
+import { ToastContext } from './ToastProvider';
 
 export const OurShopContext = createContext();
 
 export const OurShopProvider = ({ children }) => {
+  const { toast } = useContext(ToastContext);
+
   const sortOptions = [
     { label: 'Default sorting', value: '0' },
     { label: 'Sort by popularity', value: '1' },
@@ -47,6 +56,15 @@ export const OurShopProvider = ({ children }) => {
       .catch((err) => {
         console.log(err);
         setIsLoadMore(false);
+
+        // Show appropriate error message
+        if (err.isTimeout) {
+          toast.error('Request timeout. Please try again!');
+        } else if (err.isNetworkError) {
+          toast.error('Network error. Please check your internet connection!');
+        } else {
+          toast.error('Failed to load more products. Please try again!');
+        }
       });
   };
 
@@ -71,16 +89,32 @@ export const OurShopProvider = ({ children }) => {
       limit: showId,
     };
     setIsLoading(true);
-    getProducts(query)
-      .then((res) => {
-        setProducts(res.contents);
-        setTotal(res.total);
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        console.log(err);
-        setIsLoading(false);
-      });
+
+    // TODO: Remove this setTimeout after testing skeleton loader
+    // Delay the entire fetch to see skeleton for 3 seconds
+    setTimeout(() => {
+      getProducts(query)
+        .then((res) => {
+          setProducts(res.contents);
+          setTotal(res.total);
+          setIsLoading(false);
+        })
+        .catch((err) => {
+          console.log(err);
+          setIsLoading(false);
+
+          // Show appropriate error message
+          if (err.isTimeout) {
+            toast.error('Request timeout. Please try again!');
+          } else if (err.isNetworkError) {
+            toast.error(
+              'Network error. Please check your internet connection!'
+            );
+          } else {
+            toast.error('Failed to load products. Please try again!');
+          }
+        });
+    });
   }, [sortId, showId]);
 
   return (

@@ -12,6 +12,7 @@ import MyFooter from '@components/Footer/Footer';
 
 function HomePage() {
   const [listProducts, setListProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const query = {
@@ -19,12 +20,17 @@ function HomePage() {
       page: 1,
       limit: 10,
     };
-    getProducts(query).then((res) => {
-      setListProducts(res.contents);
-    });
+    setIsLoading(true);
+    getProducts(query)
+      .then((res) => {
+        setListProducts(res.contents);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.error('Failed to load products:', err);
+        setIsLoading(false);
+      });
   }, []);
-
-  // console.log(listProducts, 'listProducts');
 
   return (
     <>
@@ -33,8 +39,14 @@ function HomePage() {
         <Banner />
         <Infor />
         <AdvancelHeadling />
-        <HeadingListProduct data={listProducts.slice(0, 2)} />
-        <PopularProduct data={listProducts.slice(2, listProducts.length)} />
+        <HeadingListProduct
+          data={listProducts.slice(0, 2)}
+          isLoading={isLoading}
+        />
+        <PopularProduct
+          data={listProducts.slice(2, listProducts.length)}
+          isLoading={isLoading}
+        />
         <SaleHomePage />
         <MyFooter />
       </div>
