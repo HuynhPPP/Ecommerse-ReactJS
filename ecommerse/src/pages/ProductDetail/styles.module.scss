@@ -77,6 +77,14 @@
           cursor: pointer;
           font-size: 12px;
           color: $thr_color;
+
+          &:hover {
+            border: 1px solid $thr_color;
+          }
+        }
+
+        .activeSize {
+          border: 1px solid $thr_color;
         }
       }
 
@@ -170,5 +178,144 @@
         color: $secondary_color;
       }
     }
+  }
+}
+
+.containerInfoProduct {
+  font-weight: 400;
+
+  div:last-child {
+    border-bottom: unset;
+  }
+
+  .itemInformation {
+    @include flex_box_custom(flex-start, center, 0px);
+
+    border-bottom: 1px solid #e1e1e1;
+    padding: 15px 0px;
+
+    div {
+      width: 50%;
+    }
+
+    .title {
+      color: $secondary_color;
+    }
+
+    .content {
+      color: $thr_color;
+    }
+  }
+}
+
+.containerReview {
+  .reviews {
+    font-size: 14px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e1e1e1;
+  }
+
+  .noReview {
+    font-size: 14px;
+    color: $thr_color;
+    margin-bottom: 20px;
+  }
+
+  .replyForm {
+    padding-top: 30px;
+
+    .commentReplyTitle {
+      font-size: 14px;
+      margin-bottom: 14px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid #e1e1e1;
+      color: $thr_color;
+    }
+
+    .commentNotes {
+      font-size: 14px;
+      color: $thr_color;
+      margin-bottom: 20px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      .commentFormSave {
+        display: flex;
+        align-items: flex-start;
+        gap: 7px;
+
+        input {
+          margin-top: 3px;
+        }
+
+        span {
+          color: $thr_color;
+        }
+      }
+
+      button {
+        width: 100%;
+        max-width: 110px;
+        height: 35px;
+      }
+    }
+  }
+}
+
+.formItem {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  .boxItemStar {
+    @include flex_box_custom(unset, center, 25px);
+  }
+
+  label {
+    color: $thr_color;
+
+    span {
+      color: #c62828 !important;
+    }
+  }
+
+  input,
+  textarea {
+    border: 1px solid #e1e1e1;
+    padding: 8px 15px;
+    outline: none;
+
+    &:focus {
+      border: 1px solid $secondary_color;
+    }
+  }
+}
+
+.containerRelated {
+  margin-top: 80px;
+
+  h2 {
+    text-align: center;
+    font-weight: 400;
+  }
+}
+
+.btnClear {
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+}
+
+.disabledBtn {
+  cursor: not-allowed;
+  opacity: 0.7;
+
+  &:hover {
+    background-color: #333;
+    color: #fff;
   }
 }

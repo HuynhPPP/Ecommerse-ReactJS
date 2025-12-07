@@ -4,6 +4,7 @@ import MainLayout from '@components/Layout/Layout';
 import { useNavigate } from 'react-router-dom';
 import MyFooter from '@components/Footer/Footer';
 import imageSale1 from '@assets/images/Image_sale1.jpeg';
+import imageSale2 from '@assets/images/ImageProduct2.jpg';
 import { BsHeart } from 'react-icons/bs';
 import { TfiReload } from 'react-icons/tfi';
 import { PiShoppingCart } from 'react-icons/pi';
@@ -11,6 +12,30 @@ import Button from '@components/Button/Button';
 import PaymentMethod from '@components/PaymentMethod/PaymentMethod';
 import AccordionMenu from '@components/AccordionMenu';
 import { useState } from 'react';
+import InformationProduct from '@/pages/ProductDetail/components/Information';
+import Review from '@/pages/ProductDetail/components/Review';
+import SliderCommon from '@components/SliderCommon/SliderCommon';
+import ReactImageMagnifier from 'simple-image-magnifier/react';
+import cls from 'classnames';
+
+const tempDataSize = [
+  {
+    name: 'S',
+    amount: 10,
+  },
+  {
+    name: 'M',
+    amount: 10,
+  },
+  {
+    name: 'L',
+    amount: 10,
+  },
+  {
+    name: 'XL',
+    amount: 10,
+  },
+];
 
 function ProductDetail() {
   const {
@@ -33,6 +58,10 @@ function ProductDetail() {
     orSection,
     addFunction,
     infoProduct,
+    containerRelated,
+    activeSize,
+    btnClear,
+    disabledBtn,
   } = styles;
 
   const navigate = useNavigate();
@@ -43,21 +72,121 @@ function ProductDetail() {
 
   const [menuSelected, setMenuSelected] = useState(1);
 
+  const [sizeSelected, setSizeSelected] = useState('');
+
+  const [quantity, setQuantity] = useState(1);
+
   const dataAccordionMenu = [
     {
       id: 1,
       titleMenu: 'ADDITIONAL INFORMATION',
-      contentAccordion: <div>CONTENT ADDITIONAL INFORMATION</div>,
+      contentAccordion: <InformationProduct />,
     },
     {
       id: 2,
       titleMenu: 'REVIEW (0)',
-      contentAccordion: <div>CONTENT REVIEW</div>,
+      contentAccordion: <Review />,
     },
   ];
 
+  const dataImageDetail = [
+    {
+      image: imageSale1,
+    },
+    {
+      image: imageSale2,
+    },
+    {
+      image: imageSale1,
+    },
+    {
+      image: imageSale2,
+    },
+  ];
+
+  const tempDataSlider = [
+    {
+      image: imageSale1,
+      name: 'Product 1',
+      price: '1,879.99$',
+      size: [{ name: 'S' }, { name: 'M' }, { name: 'L' }, { name: 'XL' }],
+    },
+    {
+      image: imageSale1,
+      name: 'Product 2',
+      price: '1,879.99$',
+      size: [{ name: 'S' }, { name: 'M' }, { name: 'L' }, { name: 'XL' }],
+    },
+    {
+      image: imageSale1,
+      name: 'Product 3',
+      price: '1,879.99$',
+      size: [{ name: 'S' }, { name: 'M' }, { name: 'L' }, { name: 'XL' }],
+    },
+    {
+      image: imageSale1,
+      name: 'Product 4',
+      price: '1,879.99$',
+      size: [{ name: 'S' }, { name: 'M' }, { name: 'L' }, { name: 'XL' }],
+    },
+    {
+      image: imageSale1,
+      name: 'Product 1',
+      price: '1,879.99$',
+      size: [{ name: 'S' }, { name: 'M' }, { name: 'L' }, { name: 'XL' }],
+    },
+    {
+      image: imageSale1,
+      name: 'Product 2',
+      price: '1,879.99$',
+      size: [{ name: 'S' }, { name: 'M' }, { name: 'L' }, { name: 'XL' }],
+    },
+    {
+      image: imageSale1,
+      name: 'Product 3',
+      price: '1,879.99$',
+      size: [{ name: 'S' }, { name: 'M' }, { name: 'L' }, { name: 'XL' }],
+    },
+    {
+      image: imageSale1,
+      name: 'Product 4',
+      price: '1,879.99$',
+      size: [{ name: 'S' }, { name: 'M' }, { name: 'L' }, { name: 'XL' }],
+    },
+  ];
+
+  const handleRenderZoomImage = () => {
+    return dataImageDetail.map((item, index) => {
+      return (
+        <ReactImageMagnifier
+          key={index}
+          srcPreview={item.image}
+          srcOriginal={item.image}
+          width={295}
+          height={350}
+        />
+      );
+    });
+  };
+
   const handleSetMenuSelected = (id) => {
     setMenuSelected(id);
+  };
+
+  const handleSelectSize = (size) => {
+    setSizeSelected(size);
+  };
+
+  const handleClearSize = () => {
+    setSizeSelected('');
+  };
+
+  const handleSetQuantity = (type) => {
+    if (type === 'increase') {
+      setQuantity(quantity + 1);
+    } else {
+      setQuantity(quantity > 1 ? quantity - 1 : 1);
+    }
   };
 
   return (
@@ -75,12 +204,7 @@ function ProductDetail() {
           </div>
 
           <div className={contentSection}>
-            <div className={imageBox}>
-              <img src={imageSale1} alt='xxx' />
-              <img src={imageSale1} alt='xxx' />
-              <img src={imageSale1} alt='xxx' />
-              <img src={imageSale1} alt='xxx' />
-            </div>
+            <div className={imageBox}>{handleRenderZoomImage()}</div>
             <div className={infoBox}>
               <h1>title product</h1>
               <p className={price}>1,879.99$</p>
@@ -89,19 +213,33 @@ function ProductDetail() {
                 arcu purus orci leo.
               </p>
 
-              <p className={titleSize}>Size</p>
+              <p className={titleSize}>Size {sizeSelected}</p>
               <div className={boxSize}>
-                <div className={size}>S</div>
-                <div className={size}>M</div>
-                <div className={size}>L</div>
-                <div className={size}>XL</div>
+                {tempDataSize.map((item, index) => {
+                  return (
+                    <div
+                      key={index}
+                      className={cls(size, {
+                        [activeSize]: sizeSelected === item.name,
+                      })}
+                      onClick={() => handleSelectSize(item.name)}
+                    >
+                      {item.name}
+                    </div>
+                  );
+                })}
+                {sizeSelected && (
+                  <p className={btnClear} onClick={handleClearSize}>
+                    clear
+                  </p>
+                )}
               </div>
 
               <div className={functionInfo}>
                 <div className={boxCount}>
-                  <div>-</div>
-                  <div>1</div>
-                  <div>+</div>
+                  <div onClick={() => handleSetQuantity('decrease')}>-</div>
+                  <div>{quantity}</div>
+                  <div onClick={() => handleSetQuantity('increase')}>+</div>
                 </div>
                 <div className={boxAddCart}>
                   <Button
@@ -110,6 +248,7 @@ function ProductDetail() {
                         <PiShoppingCart /> ADD TO CART
                       </>
                     }
+                    customClassName={!sizeSelected ? disabledBtn : ''}
                   />
                 </div>
               </div>
@@ -127,6 +266,7 @@ function ProductDetail() {
                       <PiShoppingCart /> BUY NOW
                     </>
                   }
+                  customClassName={!sizeSelected ? disabledBtn : ''}
                 />
               </div>
 
@@ -166,9 +306,22 @@ function ProductDetail() {
               ))}
             </div>
           </div>
+
+          {/* RELATED PRODUCTS */}
+          <div className={containerRelated}>
+            <h2>Related products</h2>
+
+            <SliderCommon
+              data={tempDataSlider}
+              isProductItem
+              slidesToShow={4}
+            />
+          </div>
         </MainLayout>
       </div>
+
       {/* <MyFooter /> */}
+      <MyFooter />
     </div>
   );
 }
