@@ -5,8 +5,8 @@ function InformationProduct() {
 
   const dataInfo = [
     { id: 1, title: 'Size', content: 'S, M, L' },
-    { id: 2, title: 'Material', content: '100% Cotton' },
-    { id: 3, title: 'Care', content: 'Machine wash cold' },
+    { id: 2, title: 'Color', content: 'Black, Blue, Green, Grey' },
+    { id: 3, title: 'Material', content: '100% Cotton' },
   ];
 
   return (

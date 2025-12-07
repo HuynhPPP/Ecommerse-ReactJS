@@ -13,19 +13,17 @@ function App() {
         <SideBarProvider>
           <BrowserRouter>
             <SideBar />
-            <Suspense fallback={<div>Loading...</div>}>
-              <Routes>
-                {routers.map((item, index) => {
-                  return (
-                    <Route
-                      path={item.path}
-                      element={<item.component />}
-                      key={index}
-                    />
-                  );
-                })}
-              </Routes>
-            </Suspense>
+            <Routes>
+              {routers.map((item, index) => {
+                return (
+                  <Route
+                    path={item.path}
+                    element={<item.component />}
+                    key={index}
+                  />
+                );
+              })}
+            </Routes>
           </BrowserRouter>
         </SideBarProvider>
       </ToastProvider>
