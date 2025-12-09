@@ -320,10 +320,254 @@
   }
 }
 
-.loadingContainer {
-  height: 977px;
+.emptyProduct {
+  min-height: 400px;
   display: flex;
-  align-items: center;
   justify-content: center;
-  background-color: #fff6f6;
+  align-items: center;
+  padding: 60px 20px;
+  position: relative;
+  overflow: hidden;
+
+  // Animated background elements
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+      circle,
+      rgba(0, 0, 0, 0.02) 1px,
+      transparent 1px
+    );
+    background-size: 50px 50px;
+    animation: moveBackground 20s linear infinite;
+  }
+
+  .errorContent {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+    width: 100%;
+    backdrop-filter: blur(10px);
+    padding: 60px 40px;
+    text-align: center;
+    animation: fadeInUp 0.6s ease-out;
+
+    .errorIcon {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 30px;
+      background: $primary_color;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: pulse 2s ease-in-out infinite;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+
+      svg {
+        width: 60px;
+        height: 60px;
+        color: $white_color;
+        animation: shake 0.5s ease-in-out;
+      }
+    }
+
+    .errorTitle {
+      font-size: 32px;
+      font-weight: 600;
+      color: $four_color;
+      margin: 0 0 16px 0;
+    }
+
+    .errorDescription {
+      font-size: 16px;
+      line-height: 1.6;
+      color: $secondary_color;
+      margin: 0 0 40px 0;
+      font-weight: 400;
+    }
+
+    .errorActions {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+
+      button {
+        padding: 12px 32px;
+        font-size: 15px;
+        font-weight: 500;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        border: none;
+        outline: none;
+
+        &:first-child {
+          background: $primary_color;
+          color: $white_color;
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+          &:hover {
+            background: $four_color;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+          }
+        }
+      }
+
+      .btnSecondary {
+        background: $white_color;
+        color: $primary_color;
+        border: 2px solid $primary_color !important;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+
+        &:hover {
+          background: $primary_color;
+          color: $white_color;
+          transform: translateY(-2px);
+          box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+      }
+    }
+
+    .errorSuggestions {
+      padding-top: 30px;
+      border-top: 1px solid #e1e1e1;
+
+      p {
+        font-size: 14px;
+        color: $thr_color;
+        margin: 0 0 16px 0;
+        font-weight: 500;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+
+        li {
+          font-size: 15px;
+          color: $thr_color;
+          cursor: pointer;
+          padding: 12px 20px;
+          background: #f5f5f5;
+          border-radius: 8px;
+          transition: all 0.3s ease;
+          font-weight: 500;
+          position: relative;
+          overflow: hidden;
+
+          &::before {
+            content: '→';
+            position: absolute;
+            left: 20px;
+            opacity: 0;
+            transition: all 0.3s ease;
+          }
+
+          &:hover {
+            background: $primary_color;
+            color: $white_color;
+            transform: translateX(8px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            padding-left: 40px;
+
+            &::before {
+              opacity: 1;
+              left: 20px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Animations
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-10deg);
+  }
+  75% {
+    transform: rotate(10deg);
+  }
+}
+
+@keyframes moveBackground {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(50px, 50px);
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .emptyProduct {
+    .errorContent {
+      padding: 40px 24px;
+
+      .errorIcon {
+        width: 100px;
+        height: 100px;
+
+        svg {
+          width: 50px;
+          height: 50px;
+        }
+      }
+
+      .errorTitle {
+        font-size: 24px;
+      }
+
+      .errorDescription {
+        font-size: 14px;
+      }
+
+      .errorActions {
+        flex-direction: column;
+
+        button {
+          width: 100%;
+        }
+      }
+    }
+  }
 }
