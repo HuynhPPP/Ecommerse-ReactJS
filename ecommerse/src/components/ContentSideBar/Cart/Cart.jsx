@@ -53,7 +53,7 @@ function Cart() {
       />
       {listProductCart.length ? (
         <div className={containerListItemCart}>
-          <div>
+          <div style={{ overflowY: 'scroll', height: 'calc(100vh - 250px)' }}>
             {isLoadingProductCart ? (
               <LoadingTextCommon />
             ) : (

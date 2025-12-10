@@ -11,6 +11,7 @@ import { useContext, useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { SideBarContext } from '@/contexts/SideBarProvider';
 import { useNavigate } from 'react-router-dom';
+import { StoreContext } from '@/contexts/StoreProvider';
 
 function MyHeader() {
   const {
@@ -27,13 +28,32 @@ function MyHeader() {
 
   const { scrollPosition } = useScrollHandling();
   const [fixedPosition, setFixedPosition] = useState(false);
-  const { setIsOpen, setType, listProductCart } = useContext(SideBarContext);
+  const {
+    setIsOpen,
+    setType,
+    listProductCart,
+    userId,
+    handleGetListProductsCart,
+  } = useContext(SideBarContext);
+
+  const { userInfo } = useContext(StoreContext);
+
   const navigate = useNavigate();
 
   const handleOpenSidebar = (type) => {
     setIsOpen(true);
     setType(type);
   };
+
+  const handleOpenCartSideBar = () => {
+    handleGetListProductsCart(userId, 'cart');
+    handleOpenSidebar('cart');
+  };
+
+  const totalQuantity =
+    listProductCart?.length > 0
+      ? listProductCart.reduce((total, item) => total + item.quantity, 0)
+      : 0;
 
   useEffect(() => {
     setFixedPosition(scrollPosition > 80);
@@ -48,13 +68,15 @@ function MyHeader() {
       <div className={containerHeader}>
         <div className={containerBox}>
           <div className={containerBoxIcon}>
-            {dataBoxIcon.map((item) => {
-              return <BoxIcon type={item.type} href={item.href} />;
+            {dataBoxIcon.map((item, index) => {
+              return <BoxIcon key={index} type={item.type} href={item.href} />;
             })}
           </div>
           <div className={containerMenu}>
-            {dataMenu.slice(0, 3).map((item) => {
-              return <Menu content={item.content} href={item.href} />;
+            {dataMenu.slice(0, 3).map((item, index) => {
+              return (
+                <Menu key={index} content={item.content} href={item.href} />
+              );
             })}
           </div>
         </div>
@@ -72,9 +94,10 @@ function MyHeader() {
         </div>
         <div className={containerBox}>
           <div className={containerMenu}>
-            {dataMenu.slice(3, dataMenu.length).map((item) => {
+            {dataMenu.slice(3, dataMenu.length).map((item, index) => {
               return (
                 <Menu
+                  key={index}
                   content={item.content}
                   href={item.href}
                   setIsOpen={setIsOpen}
@@ -100,9 +123,11 @@ function MyHeader() {
                 style={{
                   fontSize: '20px',
                 }}
-                onClick={() => handleOpenSidebar('cart')}
+                onClick={() => handleOpenCartSideBar()}
               />
-              <div className={quantity}>{listProductCart.length}</div>
+              <div className={quantity}>
+                {totalQuantity || userInfo?.amountCart || 0}
+              </div>
             </div>
           </div>
         </div>

@@ -12,8 +12,8 @@ function MyFooter() {
       </div>
 
       <div className={boxNav}>
-        {dataMenu.map((item) => (
-          <div>{item.content}</div>
+        {dataMenu.map((item, index) => (
+          <div key={index}>{item.content}</div>
         ))}
       </div>
 
@@ -22,10 +22,12 @@ function MyFooter() {
         <img src={LogoPayment} alt='' />
       </div>
 
-      <div style={{
-        textAlign: 'center',
-        marginTop: '20px',
-      }}>
+      <div
+        style={{
+          textAlign: 'center',
+          marginTop: '20px',
+        }}
+      >
         Copyright © 2025 XStore theme. Created by Huynh Phan.
       </div>
     </div>

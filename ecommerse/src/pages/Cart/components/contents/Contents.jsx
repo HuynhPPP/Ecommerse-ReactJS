@@ -3,7 +3,7 @@ import styles from '../../styles.module.scss';
 import CartTable from './CartTable';
 import Button from '@components/Button/Button';
 import { IoTrashOutline } from 'react-icons/io5';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { SideBarContext } from '@/contexts/SideBarProvider';
 import {
   addProductToCart,
@@ -31,6 +31,7 @@ function Contents() {
     handleGetListProductsCart,
     isLoadingProductCart,
     setIsLoadingProductCart,
+    setListProductCart,
     userId,
   } = useContext(SideBarContext);
 
@@ -87,6 +88,14 @@ function Contents() {
   const handleNavigateToShop = () => {
     navigate('/shop');
   };
+
+  useEffect(() => {
+    if (userId) {
+      handleGetListProductsCart(userId, 'cart');
+    } else {
+      setListProductCart([]);
+    }
+  }, [userId]);
 
   return (
     <>

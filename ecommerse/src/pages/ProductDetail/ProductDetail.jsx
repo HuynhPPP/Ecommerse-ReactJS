@@ -23,6 +23,7 @@ import { handleAddProductToCartCommon } from '@/utils/helper';
 import { SideBarContext } from '@/contexts/SideBarProvider';
 import { ToastContext } from '@/contexts/ToastProvider';
 import Cookies from 'js-cookie';
+import { addProductToCart } from '@/apis/cartService';
 
 function ProductDetail() {
   const {
@@ -65,6 +66,7 @@ function ProductDetail() {
   const [dataRelated, setDataRelated] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingBtn, setIsLoadingBtn] = useState(false);
+  const [isLoadingBtnBuyNow, setIsLoadingBtnBuyNow] = useState(false);
   const param = useParams();
 
   const { setIsOpen, setType, handleGetListProductsCart } =
@@ -142,6 +144,29 @@ function ProductDetail() {
       setIsLoadingBtn,
       handleGetListProductsCart
     );
+  };
+
+  const handleBuyNow = () => {
+    const data = {
+      userId,
+      productId: param.id,
+      size: sizeSelected,
+      quantity,
+    };
+
+    setIsLoadingBtnBuyNow(true);
+    addProductToCart(data)
+      .then((res) => {
+        toast.success('Add Product to cart successfully');
+        setIsLoadingBtnBuyNow(false);
+        handleGetListProductsCart(userId, 'cart');
+        navigate('/cart');
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error('Add Product to cart failed');
+        setIsLoadingBtnBuyNow(false);
+      });
   };
 
   useEffect(() => {
@@ -291,10 +316,17 @@ function ProductDetail() {
                         <Button
                           content={
                             <>
-                              <PiShoppingCart /> BUY NOW
+                              {isLoadingBtnBuyNow ? (
+                                <LoadingTextCommon />
+                              ) : (
+                                <>
+                                  <PiShoppingCart /> BUY NOW
+                                </>
+                              )}
                             </>
                           }
                           customClassName={!sizeSelected ? disabledBtn : ''}
+                          onClick={handleBuyNow}
                         />
                       </div>
 
