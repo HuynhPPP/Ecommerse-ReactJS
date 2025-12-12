@@ -1,0 +1,48 @@
+@use '@styles/mixin.modules.scss' as *;
+@use '@styles/variable.module.scss' as *;
+
+.container {
+  display: flex;
+  width: 100%;
+  gap: 20px;
+
+  .leftBody {
+    flex-grow: 1;
+
+    .coupon {
+      font-size: 14px;
+      color: $four_color;
+      margin-bottom: 30px;
+
+      span {
+        text-decoration: underline;
+        cursor: pointer;
+        color: $primary_color;
+      }
+    }
+
+    .title {
+      font-size: 14px;
+      color: $primary_color;
+      text-transform: uppercase;
+      border-bottom: 1px solid #e1e1e1;
+      padding-bottom: 15px;
+    }
+
+    .row {
+      margin-bottom: 20px;
+    }
+
+    .row2Column {
+      display: flex;
+      gap: 20px;
+    }
+  }
+
+  .rightBody {
+    max-width: 500px;
+    background-color: antiquewhite;
+    height: 500px;
+    width: 100%;
+  }
+}
