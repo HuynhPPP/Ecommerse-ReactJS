@@ -52,15 +52,13 @@ function RightBody({ handleExternalSubmit }) {
         </div>
 
         <div className={payment}>
-          <div>
-            <input type='radio' value='qrCode' id='qrCode' />
-            <label htmlFor='qrCode'>QR CODE</label>
-          </div>
+          <input type='radio' id='qr' name='fav_language' value='qr' />
+          <label for='qr'>QR CODE</label>
+        </div>
 
-          <div>
-            <input type='radio' value='cashOnDelivery' id='cashOnDelivery' />
-            <label htmlFor='cashOnDelivery'>Cash on delivery</label>
-          </div>
+        <div>
+          <input type='radio' id='cod' name='fav_language' value='cod' /> {''}
+          <label for='cod'>Cash on delivery</label>
         </div>
 
         <div className={btnPlaceOrder}>

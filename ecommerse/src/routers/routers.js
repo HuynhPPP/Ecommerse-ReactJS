@@ -26,6 +26,10 @@ const routers = [
     component: lazy(() => import('@pages/AboutUs/AboutUs')),
   },
   {
+    path: '/order',
+    component: lazy(() => import('@pages/Oders/Oders')),
+  },
+  {
     path: '*',
     component: lazy(() => import('@pages/NotFound/NotFound')),
   },

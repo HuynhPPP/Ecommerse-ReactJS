@@ -8,8 +8,9 @@ function InputCustom({
   isRequired = false,
   dataOption,
   register,
+  isError = false,
 }) {
-  const { container, labelcls } = styles;
+  const { container, labelcls, error } = styles;
 
   const renderInput = () => {
     switch (type) {
@@ -19,6 +20,7 @@ function InputCustom({
             type={type}
             placeholder={placeholder}
             required={isRequired}
+            className={isError ? error : ''}
             {...register}
           />
         );
@@ -28,6 +30,7 @@ function InputCustom({
             type={type}
             placeholder={placeholder}
             required={isRequired}
+            className={isError ? error : ''}
             {...register}
           />
         );
@@ -37,12 +40,18 @@ function InputCustom({
             type={type}
             placeholder={placeholder}
             required={isRequired}
+            className={isError ? error : ''}
             {...register}
           />
         );
       case 'select':
         return (
-          <select required={isRequired} {...register} defaultValue=''>
+          <select
+            required={isRequired}
+            {...register}
+            defaultValue=''
+            className={isError ? error : ''}
+          >
             <option value='' selected disabled hidden>
               {label}
             </option>
