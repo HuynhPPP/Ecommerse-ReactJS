@@ -24,7 +24,12 @@ function InputCustom({
         );
       case 'email':
         return (
-          <input type={type} placeholder={placeholder} required={isRequired} />
+          <input
+            type={type}
+            placeholder={placeholder}
+            required={isRequired}
+            {...register}
+          />
         );
       case 'password':
         return (
@@ -37,12 +42,12 @@ function InputCustom({
         );
       case 'select':
         return (
-          <select required={isRequired} {...register}>
+          <select required={isRequired} {...register} defaultValue=''>
             <option value='' selected disabled hidden>
               {label}
             </option>
-            {dataOption.map((item, index) => (
-              <option key={index} value={item.value} {...register}>
+            {dataOption.map((item) => (
+              <option key={item.value} value={item.value}>
                 {item.label}
               </option>
             ))}

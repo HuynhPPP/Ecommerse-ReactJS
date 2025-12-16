@@ -44,3 +44,9 @@ export const handleAddProductToCartCommon = (
       setIsLoading(false);
     });
 };
+
+export const handleTotalPrice = (listProductCart) => {
+  return listProductCart.reduce((acc, item) => {
+    return acc + item.total;
+  }, 0);
+};

@@ -5,6 +5,8 @@ import { useContext } from 'react';
 import { SideBarContext } from '@/contexts/SideBarProvider';
 import LoadingCart from '@/pages/Cart/components/LoadingCart';
 import PaymentMethod from '@components/PaymentMethod/PaymentMethod';
+import { StepperContext } from '@/contexts/StepperProvider';
+import { handleTotalPrice } from '@/utils/helper';
 
 function CartSummary() {
   const {
@@ -19,10 +21,11 @@ function CartSummary() {
   } = styles;
 
   const { listProductCart, isLoadingProductCart } = useContext(SideBarContext);
+  const { setCurrentStep } = useContext(StepperContext);
 
-  const total = listProductCart.reduce((acc, item) => {
-    return acc + item.total;
-  }, 0);
+  const handleProceedToCheckout = () => {
+    setCurrentStep(2);
+  };
 
   return (
     <>
@@ -32,15 +35,20 @@ function CartSummary() {
 
           <div className={cls(boxTotal, subTotal)}>
             <div>SUBTOTAL</div>
-            <div className={price}>${total.toFixed(2)}</div>
+            <div className={price}>
+              ${handleTotalPrice(listProductCart).toFixed(2)}
+            </div>
           </div>
 
           <div className={cls(boxTotal, totals)}>
             <div>TOTAL</div>
-            <div>${total.toFixed(2)}</div>
+            <div>${handleTotalPrice(listProductCart).toFixed(2)}</div>
           </div>
 
-          <Button content={'PROCEED TO CHECKOUT'} />
+          <Button
+            content={'PROCEED TO CHECKOUT'}
+            onClick={handleProceedToCheckout}
+          />
           <div className={space}></div>
           <Button content={'CONTINUE SHOPPING'} isPrimary={false} />
           {isLoadingProductCart && <LoadingCart />}
