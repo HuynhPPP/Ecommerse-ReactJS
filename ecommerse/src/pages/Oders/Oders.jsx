@@ -7,6 +7,8 @@ function Oders() {
   const params = new URLSearchParams(location.search);
 
   const id = params.get('id');
+  const totalAmount = params.get('totalAmount');
+  const qrCodeImage = `https://qr.sepay.vn/img?acc=96247BQDS3&bank=BIDV&amount=${totalAmount}&des=${id}`;
 
   const handleGetDetailOrder = async () => {
     try {
@@ -21,7 +23,13 @@ function Oders() {
     handleGetDetailOrder();
   }, []);
 
-  return <>oders</>;
+  return (
+    <>
+      <div>
+        <img src={qrCodeImage} alt='qrCodeImage' />
+      </div>
+    </>
+  );
 }
 
 export default Oders;
