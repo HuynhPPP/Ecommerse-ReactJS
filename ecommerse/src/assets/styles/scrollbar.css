@@ -290,17 +290,56 @@
    10. RESPONSIVE SCROLLBAR
    ============================================ */
 
-/* Mobile devices - thinner scrollbar */
+/* Mobile devices - thinner scrollbar and touch optimization */
 @media (max-width: 768px) {
+  /* Optimize touch scrolling */
+  * {
+    -webkit-overflow-scrolling: touch;
+  }
+
   ::-webkit-scrollbar {
     width: 6px;
     height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.3);
   }
 
   .premium-scrollbar::-webkit-scrollbar,
   .dark-scrollbar::-webkit-scrollbar {
     width: 8px;
     height: 8px;
+  }
+
+  /* Reduce animation effects on mobile for better performance */
+  .animated-scrollbar::-webkit-scrollbar-thumb {
+    animation: none;
+    box-shadow: 0 0 5px rgba(102, 126, 234, 0.3);
+  }
+
+  /* Auto-hide scrollbar on mobile */
+  .auto-hide-mobile::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+
+  .auto-hide-mobile::-webkit-scrollbar-thumb {
+    background: transparent;
+  }
+
+  .auto-hide-mobile:hover::-webkit-scrollbar-thumb,
+  .auto-hide-mobile:active::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.3);
   }
 }
 
