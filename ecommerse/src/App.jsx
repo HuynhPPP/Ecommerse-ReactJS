@@ -1,10 +1,9 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import routers from '@/routers/routers';
-import { Suspense } from 'react';
 import { SideBarProvider } from '@/contexts/SideBarProvider';
 import SideBar from '@components/SideBar/SideBar';
 import { ToastProvider } from '@/contexts/ToastProvider';
-import { StoreProvider } from '@/contexts/storeProvider';
+import { StoreProvider } from '@/contexts/StoreProvider';
 
 function App() {
   return (
